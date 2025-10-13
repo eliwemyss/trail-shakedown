@@ -1,0 +1,18 @@
+{
+  "name": "trail-shakedown",
+  "version": "1.0.0",
+  "description": "A web application for planning and calculating backpacking gear weight and costs.",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && node server.js",
+    "client": "cd client && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
