@@ -60,11 +60,10 @@ exports.createShakedown = async (req, res) => {
       // Big Three mapping
       if (lower.includes('big three')) {
         if (n.includes('backpack')) return 'Backpack';
-        if (n.includes('liner')) return 'Sleep System';
-        if (n.includes('sleeping bag')) return 'Sleep System';
-        if (n.includes('sleeping pad')) return 'Sleep System';
-        if (n.includes('balaclava')) return 'Sleep System';
-        if (n.includes('socks')) return 'Sleep System';
+        // Sleeping pad keywords (pads, mattress, and common pad product names)
+        if (n.includes('sleeping pad') || n.includes(' pad') || n.includes('neoair') || n.includes('tensor') || n.includes('z-lite') || n.includes('zlite') || n.includes('q-core') || n.includes('qcore') || n.includes('mat ') || n.includes('mattress')) return 'Sleeping Pad';
+        // Sleeping bag/quilt keywords
+        if (n.includes('sleeping bag') || n.includes('quilt') || n.includes('liner') || n.includes('revelation') || n.includes('enigma') || n.includes('spark')) return 'Sleeping Bag';
         if (n.includes('tent')) return 'Shelter';
         if (n.includes('hammock')) return 'Shelter';
         if (n.includes('fly')) return 'Shelter';
@@ -128,11 +127,8 @@ exports.createShakedown = async (req, res) => {
       if (n.includes('fly')) return 'Shelter';
       if (n.includes('stakes')) return 'Shelter';
       if (n.includes('straps')) return 'Shelter';
-      if (n.includes('sleeping bag')) return 'Sleep System';
-      if (n.includes('sleeping pad')) return 'Sleep System';
-      if (n.includes('liner')) return 'Sleep System';
-      if (n.includes('balaclava')) return 'Sleep System';
-      if (n.includes('socks')) return 'Sleep System';
+      if (n.includes('sleeping bag') || n.includes('quilt') || n.includes('liner') || n.includes('revelation') || n.includes('enigma') || n.includes('spark')) return 'Sleeping Bag';
+      if (n.includes('sleeping pad') || n.includes(' pad') || n.includes('neoair') || n.includes('tensor') || n.includes('z-lite') || n.includes('zlite') || n.includes('q-core') || n.includes('qcore') || n.includes('mat ') || n.includes('mattress')) return 'Sleeping Pad';
       if (n.includes('backpack')) return 'Backpack';
       if (n.includes('stove')) return 'Cooking';
       if (n.includes('cup')) return 'Cooking';
@@ -228,14 +224,16 @@ const gearAlternatives = {
     { name: 'Zpacks Duplex', weight_oz: 19.4, price: 699, description: 'Ultralight 2-person tent', url: 'https://zpacks.com/products/duplex-tent' },
     { name: 'Gossamer Gear The One', weight_oz: 16.9, price: 295, description: 'Single-person ultralight tent', url: 'https://www.gossamergear.com/products/the-one' },
     { name: 'Six Moon Designs Lunar Solo', weight_oz: 26, price: 230, description: 'Popular solo tent', url: 'https://www.sixmoondesigns.com/products/lunar-solo' },
-    { name: 'Enlightened Equipment Visp', weight_oz: 6.5, price: 200, description: 'Ultralight rain jacket', url: 'https://enlightenedequipment.com/visp-rain-jacket/' },
     { name: 'Sea to Summit Escapist Tarp', weight_oz: 10.5, price: 200, description: 'Ultralight tarp shelter', url: 'https://seatosummit.com/products/escapist-tarp/' }
   ],
-  'Sleep System': [
+  'Sleeping Bag': [
     { name: 'Enlightened Equipment Revelation 20°', weight_oz: 16.6, price: 325, description: 'Ultralight quilt', url: 'https://enlightenedequipment.com/revelation-quilt/' },
+    { name: 'Sea to Summit Spark I', weight_oz: 12, price: 379, description: 'Ultralight sleeping bag', url: 'https://seatosummit.com/products/spark-sleeping-bag/' },
+    { name: 'Enlightened Equipment Enigma 30°', weight_oz: 14, price: 285, description: 'Lightweight summer quilt', url: 'https://enlightenedequipment.com/enigma-quilt/' }
+  ],
+  'Sleeping Pad': [
     { name: 'Therm-a-Rest NeoAir XLite', weight_oz: 12, price: 200, description: 'Ultralight inflatable pad', url: 'https://www.thermarest.com/sleeping-pads/neoair-xlite-nxt-sleeping-pad/neoair-xlite-nxt.html' },
     { name: 'Nemo Tensor Insulated', weight_oz: 15, price: 200, description: 'Lightweight insulated pad', url: 'https://www.nemoequipment.com/products/tensor' },
-    { name: 'Sea to Summit Spark I', weight_oz: 12, price: 379, description: 'Ultralight sleeping bag', url: 'https://seatosummit.com/products/spark-sleeping-bag/' },
     { name: 'Therm-a-Rest Z-Lite Sol', weight_oz: 10, price: 50, description: 'Foam sleeping pad', url: 'https://www.thermarest.com/sleeping-pads/closed-cell-foam/z-lite-sol-sleeping-pad/z-lite-sol.html' }
   ],
   'Backpack': [
@@ -263,6 +261,7 @@ const gearAlternatives = {
     { name: 'Patagonia Houdini', weight_oz: 3.5, price: 99, description: 'Ultralight wind jacket', url: 'https://www.patagonia.com/product/mens-houdini-jacket/24142.html' },
     { name: 'Montbell Plasma 1000', weight_oz: 6.9, price: 379, description: 'Ultralight down jacket', url: 'https://en.montbell.jp/products/goods/list.php?category=1' },
     { name: 'Frogg Toggs jacket', weight_oz: 6, price: 20, description: 'Budget rain jacket', url: 'https://www.froggtoggs.com/' },
+    { name: 'Enlightened Equipment Visp', weight_oz: 6.5, price: 200, description: 'Ultralight rain jacket', url: 'https://enlightenedequipment.com/visp-rain-jacket/' },
     { name: 'Merino wool base layers', weight_oz: 6, price: 80, description: 'Lightweight multi-day layers', url: 'https://www.icebreaker.com/en-us/mens-merino-wool-base-layers' },
     { name: 'Senchi Designs Alpha 90', weight_oz: 2.5, price: 90, description: 'Ultralight fleece', url: 'https://senchidesigns.com/products/alpha-90-hoodie' },
     { name: 'Darn Tough Socks', weight_oz: 2, price: 20, description: 'Durable lightweight socks', url: 'https://darntough.com/' }
@@ -375,7 +374,7 @@ function generateRecommendations(gearList, totalWeight) {
   // Check for already optimized categories
   const lightCategories = [];
   gearList.forEach(item => {
-    if (item.weight_oz < 20 && ['Shelter', 'Sleep System', 'Backpack'].includes(item.category)) {
+    if (item.weight_oz < 20 && ['Shelter', 'Sleeping Bag', 'Sleeping Pad', 'Backpack'].includes(item.category)) {
       lightCategories.push(item.category);
     }
   });
@@ -424,7 +423,8 @@ function generateWhyText(currentItem, alternative, savingsOz) {
 
   const whyTexts = {
     'Shelter': `The ${alternative.name} will save you significant weight and is proven on long trails. Yes, it's pricier, but for a thru-hike the weight savings compound daily. ${currentItem.name} is great but overkill for solo + ultralight goals.`,
-    'Sleep System': `A quilt will save major weight. The ${alternative.name} is battle-tested on major trails. Since you're going in warmer months, consider the lighter version for even more savings.`,
+    'Sleeping Bag': `A quilt will save major weight. The ${alternative.name} is battle-tested on major trails. Since you're going in warmer months, consider the lighter version for even more savings.`,
+    'Sleeping Pad': `The ${alternative.name} offers a great weight-to-comfort ratio. ${savingsLbs}lbs saved on your sleeping pad means easier carries and less fatigue over long days.`,
     'Backpack': `With lighter shelter and sleep system, you can drop to ${alternative.name}. This saves ${savingsLbs}lbs and your back will thank you after 20+ mile days.`,
     'Cooking': `The ${alternative.name} is ultralight and sufficient for most meals. Consider cold-soaking to eliminate cooking gear entirely.`,
     'Clothing': `${alternative.name} provides same protection at ${alternative.weight_oz}oz. Layer strategically instead of heavy single pieces.`,

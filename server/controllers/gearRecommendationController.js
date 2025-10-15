@@ -191,21 +191,21 @@ function buildGearList(tripType, season, terrain, experience, budget) {
     ]
   };
 
-  // Select gear based on budget
-  gearList.push(...shelterOptions[budget]);
-  gearList.push(...sleepOptions[budget]);
+  // Select gear based on budget (one item per category)
+  gearList.push(shelterOptions[budget][0]); // Select first shelter option
+  gearList.push(...sleepOptions[budget]); // Keep both sleep items (bag + pad)
   gearList.push(backpackOptions[budget][0]);
 
   // Add cooking gear (optional for experienced hikers in summer)
   if (!(experience === 'expert' && season === 'summer')) {
-    gearList.push(...cookingOptions[budget]);
+    gearList.push(...cookingOptions[budget]); // Keep both (stove + pot)
   }
 
-  gearList.push(...waterOptions[budget]);
+  gearList.push(...waterOptions[budget]); // Keep both (filter + container)
 
   // Add more clothing for winter/difficult terrain
   if (season === 'winter' || terrain === 'difficult') {
-    gearList.push(...clothingOptions[budget]);
+    gearList.push(...clothingOptions[budget]); // Keep both (rain jacket + insulation)
     // Add extra insulation for winter
     if (season === 'winter') {
       const winterGear = {
@@ -220,9 +220,9 @@ function buildGearList(tripType, season, terrain, experience, budget) {
     gearList.push(clothingOptions[budget][0]);
   }
 
-  gearList.push(...electronicsOptions[budget]);
+  gearList.push(...electronicsOptions[budget]); // Keep both (headlamp + battery)
   gearList.push(firstAidOptions[budget][0]);
-  gearList.push(...miscOptions[budget]);
+  gearList.push(...miscOptions[budget]); // Keep both (trowel + lighter)
 
   return gearList;
 }
